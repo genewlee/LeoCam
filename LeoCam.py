@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 from picamera import PiCamera
 from time import sleep
@@ -9,6 +9,8 @@ from DropBoxAgent import DropBoxAgent
 def LeoCam_main():
     
     camera = PiCamera()
+    camera.resolution = (2592, 1944)
+    camera.framerate = 15
 
     #give the sensor time to set its light levels
     sleep(5)
