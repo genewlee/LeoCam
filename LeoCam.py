@@ -19,7 +19,7 @@ def LeoCam_main():
     now = datetime.now()
     now = str(now)[:19]
 
-    filepath = '/home/pi/Desktop/LeoCam_captures/%s.png' % now
+    filepath = '/home/pi/Desktop/LeoCam_captures/%s.jpg' % now
 
     #take picture
     camera.capture(filepath)
