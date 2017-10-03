@@ -1,4 +1,3 @@
-# Dropbox API v2
 import os
 import dropbox
 
@@ -23,7 +22,7 @@ class DropBoxAgent(object):
             with open(config_file, 'r') as cf:
                 exec(cf.read())
 
-            self.client = dropbox.Dropbox(access_token)
+            self.client = dropbox.client.DropboxClient(access_token)
 
         except Exception, e:
             print e
@@ -32,7 +31,7 @@ class DropBoxAgent(object):
         '''
         Return account information of Dropbox account
         '''
-        return self.client.users_get_current_account()
+        return self.client.account_info()
 
     def upload (self, filepath):
         '''
@@ -42,9 +41,11 @@ class DropBoxAgent(object):
         try:
             f = open(filepath, 'rb')
             filename = os.path.basename(filepath)
-            res = self.client.files_upload(f, '/' + filename) # (<file>, <Dropbox dir>)
+            res = self.client.put_file('/' + filename, f)
 
             print 'uploaded: ', res
-
+            
         except Exception, e:
             print e
+
+
