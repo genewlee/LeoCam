@@ -1,0 +1,8 @@
+# crontab
+
+# Take a picutre every 15 minutes
+*/15 * * * * /home/pi/sandboxes/LeoCam/LeoCam.py photo
+# Delete the pictures in local directory every Sunday at noon
+0 12 * * 0 rm /home/pi/Desktop/LeoCam_captures/*.jpg
+# Delete the pictures in remote (dropbbox) directory every Sunday at noon
+0 12 * * 0 /home/pi/sandboxes/LeoCam/DropBox_delete_files.py

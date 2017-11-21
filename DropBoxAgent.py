@@ -42,9 +42,19 @@ class DropBoxAgent(object):
         try:
             f = open(filepath, 'rb')
             filename = os.path.basename(filepath)
-            res = self.client.files_upload(f, '/' + filename) # (<file>, <Dropbox dir>)
+            res = self.client.files_upload(f, '/Leo/' + filename) # (<file>, <Dropbox dir>)
 
             print 'uploaded: ', res
 
         except Exception, e:
+            print e
+
+    def delete_files (self, path='/Leo'):
+        '''
+        Delete files in root path
+        '''
+
+        try:
+            self.client.files_delete(path) # (<Dropbox dir>)
+        except Exception as e:
             print e
