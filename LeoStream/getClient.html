@@ -12,8 +12,8 @@
 
 		function auth()
 		{
-		    var pw = prompt("Authentication");
-		    if (pw == null) location.reload(true);
+		    var pw = prompt("Verifying that you are not a creep...");
+		    if (pw == null) return; // Cancel -> does nothing
 		    $.ajax({
                             type: "POST",
 			    async: false,
@@ -72,6 +72,7 @@
 
         	function start() 
         	{
+			// Start the server for post/get requests of images
 			$.ajax({
                 	    type: "POST",
                    	    url: "http://71.197.237.115:2180/LeoStream/startStop.php",
@@ -83,6 +84,7 @@
                             }
             		});
 
+			// Start the posting client on server
             		$.ajax({
                 	    type: "POST",
                 	    url: "http://71.197.237.115:2180/LeoStream/startStop.php",
@@ -100,6 +102,7 @@
          	}
 
 		function startTimer(timeLeft) {
+			// Shows countdown of remaning time server is up and running. Hard set on server side.
 			var timeLeft = parseInt(timeLeft);
 			var timerId = setInterval(countdown, 1000);
 
@@ -120,6 +123,7 @@
 	<head>
 		<meta charset='utf-8'>
 		<title>LeoStream</title>
+		<link rel="apple-touch-icon" href="apple-icon-roundLeo.jpg">
 		<style>
 			div {font-family:Arial; font-size:32px;}
 			h1 {font-size:72px; color:White; font-family:Arial;}
