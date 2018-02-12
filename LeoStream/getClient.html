@@ -10,6 +10,27 @@
 
 		var SSTATUS = "Server status: ";
 
+		function auth()
+		{
+		    var pw = prompt("Authentication");
+		    if (pw == null) location.reload(true);
+		    $.ajax({
+                            type: "POST",
+			    async: false,
+                            url: "http://71.197.237.115:2180/LeoStream/auth.php",
+                            data: {verify:pw},
+			    success: function(data) {
+				console.log(data);
+				if (data == "success") {
+					Init();
+				}
+				else {
+					location.reload();
+				}
+			    }		 
+                        });
+		}
+
 		function Init()
 		{
 		    server = document.getElementById('server');
@@ -19,7 +40,8 @@
 		    timer = document.getElementById('timer');
 		    timer.style.color = "White"; 
 
-		    leoBtn = document.getElementById('leoBtn');  
+		    leoBtn = document.getElementById('leoBtn');
+		    leoBtn.disabled = !leoBtn.disabled;  
 		}
 
 		function InitStream()
@@ -97,7 +119,7 @@
 
 	<head>
 		<meta charset='utf-8'>
-		<title>Webcam Viewer</title>
+		<title>LeoStream</title>
 		<style>
 			div {font-family:Arial; font-size:32px;}
 			h1 {font-size:72px; color:White; font-family:Arial;}
@@ -106,7 +128,7 @@
 		</style>
 	</head>
 
-	<body bgcolor="black" onload="Init()">
+	<body bgcolor="black" onload="auth()">
 		<h1>LeoCam</h1>
 		<div>
 			<img id="stream">
@@ -114,7 +136,7 @@
 		<table>
     			<tr>
         			<td>
-            				<button id="leoBtn" type="submit" onclick='start()'>LEO!</button>
+            				<button id="leoBtn" disabled=true type="submit" onclick='start()'>LEO!</button>
         			</td>
         			<td align="right">
            				 <div id="server"></div>
