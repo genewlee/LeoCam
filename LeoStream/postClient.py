@@ -15,9 +15,10 @@ def LeoCam_main():
     camera = PiCamera()
     camera.framerate = 32
     camera.resolution = (648, 486)
+    camera.brightness = 55
 
     #give the sensor time to set its light levels
-    sleep(5)
+    sleep(1)
 
     while True:
         try:
